@@ -5,16 +5,29 @@ import Home from './components/Home';
 import Liked from "./components/Liked";
 import MyRecipes from "./components/MyRecipes";
 import BottomNav from "./components/BottomNav";
-
+import TopBar from "./components/TopBar";
 
 function App() {
   return (
       <Router>
     <div className="App">
+
+
         <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/liked" component={Liked} />
-        <Route path="/myRecipes" component={MyRecipes} />
+        <Route path="/" exact>
+            <TopBar name="Home"/>
+            <Home name="Home" />
+        </Route>
+        <Route path="/liked">
+            <TopBar name="Liked"/>
+            <Liked name="Liked"/>
+
+        </Route>
+        <Route path="/myRecipes" >
+            <TopBar name="My recipes"/>
+            <MyRecipes name="My recipes"/>
+        </Route>
+
         </Switch>
 
 

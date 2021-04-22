@@ -1,8 +1,8 @@
 import '../App.css';
-function MyRecipes() {
+function MyRecipes({name}) {
     return (
         <div className="App">
-            <p>My recipes</p>
+            <p>{name}</p>
 
         </div>
     );

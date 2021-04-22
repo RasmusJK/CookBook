@@ -1,8 +1,8 @@
 import '../App.css';
-function Home() {
+function Home({name}) {
     return (
         <div className="App">
-            <p>Home</p>
+            <p>{name}</p>
 
         </div>
     );

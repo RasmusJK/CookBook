@@ -1,8 +1,8 @@
 import '../App.css';
-function Liked() {
+function Liked(props) {
     return (
         <div className="App">
-            <p>Liked</p>
+            <p>{props.name}</p>
 
         </div>
     );
