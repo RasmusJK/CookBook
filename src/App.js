@@ -7,7 +7,7 @@ import MyRecipes from "./components/MyRecipes";
 import BottomNav from "./components/BottomNav";
 import TopBar from "./components/TopBar";
 
-function App() {
+const App = () => {
   return (
       <Router>
     <div className="App">

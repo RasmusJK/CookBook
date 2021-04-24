@@ -14,14 +14,16 @@ const useStyles = makeStyles(() => ({
         border: 0,
         height: 48,
         color:"black",
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+
 
     },
     title: {
         flexGrow: 1,
-        alignItems:"center",
+
         color: "inherit",
         marginBottom:10,
+        marginLeft:60,
 
 
     },
