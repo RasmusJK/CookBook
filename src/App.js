@@ -21,7 +21,6 @@ const App = () => {
         <Route path="/liked">
             <TopBar name="Liked"/>
             <Liked name="Liked"/>
-
         </Route>
         <Route path="/myRecipes" >
             <TopBar name="My recipes"/>
