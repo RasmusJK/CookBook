@@ -1,10 +1,12 @@
-import React from "react";
-//import TopBar from "./TopBar";
+import React,{useEffect,useState} from "react";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import {makeStyles} from "@material-ui/core/styles";
+import TopBar from "./TopBar";
+import {GET_RECIPE} from '../gql/query'
+import { useQuery } from '@apollo/client'
 
 const useStyles = makeStyles({
     root: {
@@ -26,10 +28,25 @@ const useStyles = makeStyles({
         textAlign:"start"
     }
 });
-const Recipe = ({title}) => {
-    console.log(title);
+const Recipe = ({match}) => {
+    console.log("match params",match.params.id);
+    const id = match.params.id
     const classes = useStyles();
+
+    const { loading, error, data } = useQuery(GET_RECIPE,{variables: {id: id }});
+    const [recipe,setRecipe]= useState([]);
+
+    useEffect(()=>{
+        if (data) {
+            console.log("single recipe", data.recipe);
+            setRecipe(data.recipe);
+        }
+    },[data]);
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
     return(
+        <div>
+            <TopBar/>
         <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
@@ -40,7 +57,7 @@ const Recipe = ({title}) => {
 
 
                 <Typography className={classes.title}  color="textSecondary" gutterBottom>
-                    {title}
+                    {recipe.recipeName}
                 </Typography>
 
                 <Typography className={classes.author} color="textSecondary">
@@ -50,7 +67,7 @@ const Recipe = ({title}) => {
             </CardContent>
 
         </Card>
-
+        </div>
     )
 }
 

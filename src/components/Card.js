@@ -24,12 +24,13 @@ const useStyles = makeStyles({
     }
 });
 
- const Card1 = ({title})=> {
+ const Card1 = ({title,id})=> {
     const classes = useStyles();
 
     return (
-        <Link to={`/recipe/${title}`}  >
         <Card className={classes.root}>
+            <Link to={`/recipe/${id}`}  >
+
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
@@ -42,8 +43,9 @@ const useStyles = makeStyles({
                     </Typography>
                 </CardContent>
             </CardActionArea>
-        </Card>
         </Link>
+
+ </Card>
     );
 }
 export default Card1;

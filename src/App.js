@@ -32,10 +32,9 @@ const App = () => {
                 <MyRecipes name="My recipes"/>
             </Route>
 
-            <Route path="/recipe/:name" >
-                <TopBar name="My recipes"/>
-                <Recipe />
-            </Route>
+            <Route path="/recipe/:id" component={Recipe} />
+
+
 
         </Switch>
 

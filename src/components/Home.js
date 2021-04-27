@@ -24,7 +24,7 @@ const Home=({name})=> {
 
         <div className="App">
             {recipes.map(recipe =>(
-                <Card1 key={recipe.recipeName} title={recipe.recipeName} />
+                <Card1 key={recipe.id} id={recipe.id} title={recipe.recipeName} />
             ))}
         </div>
     );

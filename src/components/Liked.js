@@ -3,7 +3,7 @@ import React from "react";
 
 
 
-function Liked(props) {
+const Liked=(props)=> {
     return (
         <div className="App">
             <p>{props.name}</p>
