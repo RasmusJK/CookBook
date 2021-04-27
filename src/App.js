@@ -6,6 +6,7 @@ import Liked from "./components/Liked";
 import MyRecipes from "./components/MyRecipes";
 import BottomNav from "./components/BottomNav";
 import TopBar from "./components/TopBar";
+import Recipe from "./components/Recipe";
 
 const App = () => {
   return (
@@ -26,6 +27,15 @@ const App = () => {
             <TopBar name="My recipes"/>
             <MyRecipes name="My recipes"/>
         </Route>
+            <Route path="/myRecipes" >
+                <TopBar name="My recipes"/>
+                <MyRecipes name="My recipes"/>
+            </Route>
+
+            <Route path="/recipe/:name" >
+                <TopBar name="My recipes"/>
+                <Recipe />
+            </Route>
 
         </Switch>
 

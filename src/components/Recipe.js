@@ -1,6 +1,5 @@
 import React from "react";
-import TopBar from "./TopBar";
-import {Image} from "@material-ui/icons";
+//import TopBar from "./TopBar";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -28,8 +27,8 @@ const useStyles = makeStyles({
     }
 });
 const Recipe = ({title}) => {
+    console.log(title);
     const classes = useStyles();
-
     return(
         <Card className={classes.root}>
             <CardMedia
@@ -41,7 +40,7 @@ const Recipe = ({title}) => {
 
 
                 <Typography className={classes.title}  color="textSecondary" gutterBottom>
-                    Title
+                    {title}
                 </Typography>
 
                 <Typography className={classes.author} color="textSecondary">

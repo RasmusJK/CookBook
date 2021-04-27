@@ -33,7 +33,7 @@ const BottomNav =()=>{
                 onChange={(event, newValue) => {
                     setValue(newValue);
                 }}
-                showLabels
+                //showLabels    //something wrong with this
                 className={classes.root}
             >
 
