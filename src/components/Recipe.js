@@ -7,7 +7,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import TopBar from "./TopBar";
 import {GET_RECIPE} from '../gql/query'
 import { useQuery } from '@apollo/client'
-
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
 const useStyles = makeStyles({
     root: {
         margin:10,
@@ -26,6 +27,11 @@ const useStyles = makeStyles({
     },
     content: {
         textAlign:"start"
+    },
+    ingredients:{marginTop:50
+    },
+    button:{
+        background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
     }
 });
 const Recipe = ({match}) => {
@@ -35,13 +41,27 @@ const Recipe = ({match}) => {
 
     const { loading, error, data } = useQuery(GET_RECIPE,{variables: {id: id }});
     const [recipe,setRecipe]= useState([]);
-
+    const [resource,setResource] = useState(true)
+    const [ingredients, setIngredients] = useState([])
+    const [steps, setSteps] = useState([]);
+    const [instructions, setInstructions] = useState([ingredients])
     useEffect(()=>{
+
+
+
         if (data) {
             console.log("single recipe", data.recipe);
             setRecipe(data.recipe);
+            setIngredients(data.recipe.ingredients.ingredients);
+            setSteps(data.recipe.steps);
+            if(resource){
+                setInstructions(ingredients);
+            } else{
+                setInstructions(steps);
+            }
+
         }
-    },[data]);
+    },[data,resource]);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
     return(
@@ -56,13 +76,23 @@ const Recipe = ({match}) => {
             <CardContent>
 
 
-                <Typography className={classes.title}  color="textSecondary" gutterBottom>
+                <Typography className={classes.title}   gutterBottom>
                     {recipe.recipeName}
                 </Typography>
 
                 <Typography className={classes.author} color="textSecondary">
                     Author
                 </Typography>
+                <div className={classes.ingredients}>
+                    <ButtonGroup className={classes.button} disableElevation variant="contained">
+                        <Button onClick={()=>setResource(true)}>Ingredients</Button>
+                        <Button onClick={()=>setResource(false)}>Steps</Button>
+                    </ButtonGroup>
+
+                     {instructions.map(ingredient =>(
+                   <Typography>{ingredient}</Typography>))}
+
+                </div>
 
             </CardContent>
 
