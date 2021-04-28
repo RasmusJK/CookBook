@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { BottomNavigationAction, BottomNavigation  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -25,7 +25,7 @@ const BottomNav =()=>{
         },
     }));
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] =useState(0);
     return(
         <div className={classes.root}>
             <BottomNavigation
@@ -33,13 +33,13 @@ const BottomNav =()=>{
                 onChange={(event, newValue) => {
                     setValue(newValue);
                 }}
-                //showLabels    //something wrong with this
+                showLabels    //something wrong with this
                 className={classes.root}
             >
 
                 <Link to="/"> <BottomNavigationAction label="Home" icon={<HomeIcon />} /> </Link>
                 <Link to="/liked"> <BottomNavigationAction label="Liked" icon={<FavoriteIcon />} /> </Link>
-                <Link to="/myRecipes">  <BottomNavigationAction label="My recipes" icon={<LocationOnIcon />} /> </Link>
+                <Link to="/myRecipes">  <BottomNavigationAction label="My recipes" icon={<LocationOnIcon />} />  </Link>
 
             </BottomNavigation>
 

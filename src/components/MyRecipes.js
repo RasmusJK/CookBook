@@ -1,9 +1,11 @@
 import '../App.css';
 import React from "react";
-
-function MyRecipes({name}) {
+import Form from "./Form"
+const MyRecipes=({name})=> {
     return (
         <div className="App">
+            <Form/>
+
 
 
         </div>

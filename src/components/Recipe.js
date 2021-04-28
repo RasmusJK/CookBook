@@ -47,21 +47,20 @@ const Recipe = ({match}) => {
     const [instructions, setInstructions] = useState([ingredients])
     useEffect(()=>{
 
-
-
         if (data) {
             console.log("single recipe", data.recipe);
             setRecipe(data.recipe);
             setIngredients(data.recipe.ingredients.ingredients);
             setSteps(data.recipe.steps);
             if(resource){
-                setInstructions(ingredients);
+                 setInstructions(ingredients);
             } else{
                 setInstructions(steps);
             }
-
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }
     },[data,resource]);
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
     return(
@@ -90,7 +89,7 @@ const Recipe = ({match}) => {
                     </ButtonGroup>
 
                      {instructions.map(ingredient =>(
-                   <Typography>{ingredient}</Typography>))}
+                   <Typography key={ingredient}>{ingredient}</Typography>))}
 
                 </div>
 

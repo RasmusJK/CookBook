@@ -44,7 +44,7 @@ const TopBar =({name})=> {
                     <Typography variant="h6" className={classes.title}>
                         {name}
                     </Typography>
-                    <Button color="inherit "><SearchIcon/></Button>
+                    <Button ><SearchIcon/></Button>
                 </Toolbar>
             </AppBar>
         </div>

@@ -1,16 +1,35 @@
 import {gql} from '@apollo/client'
 
 export const CREATE_INGREDIENT = gql`
- mutation{addIngredients(
-  ingredients: ["Nuudelit","vesi"]
-){ingredients id}}
-
+ 
+ mutation addIngredients(
+    $ingredients: [String]
+ ) { 
+        addIngredients(
+        ingredients: $ingredients
+ ) {
+    ingredients
+     id
+    }
+  }
 `;
 
 export const CREATE_RECIPE = gql`
- mutation{addRecipe(recipeName:"nuudelit"
-  ingredients:"6088709bb0ded81f24b3e274"
-  steps:["keitä vesi","kaada vesi nuudeleiden päälle", "odota 5min ","nauti"
-  ]){recipeName ingredients{ingredients} steps }}
-
+ 
+ mutation addRecipe(
+    $recipeName: String
+    $ingredients: ingredients
+    $steps: [String]
+    ) {addRecipe(
+        recipeName: $recipeName
+        ingredients: $ingredients
+        steps: $steps
+    ) {
+        recipeName
+        ingredients{ingredients} 
+        steps
+    }
+ }
+ 
 `;
+
