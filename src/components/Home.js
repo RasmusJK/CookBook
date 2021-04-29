@@ -4,8 +4,21 @@ import React,{useEffect,useState} from "react";
 import Card1 from "./Card";
 import {GET_RECIPES} from '../gql/query'
 import { useQuery } from '@apollo/client'
+import {makeStyles} from "@material-ui/core/styles";
 
+const useStyles = makeStyles({
+    root: {
+        display:"flex",
+        justifyContent:"space-around",
+        flexDirection:"column",
+        marginBottom:50,
+
+
+    },
+
+});
 const Home=({name})=> {
+    const classes = useStyles();
     const { loading, error, data } = useQuery(GET_RECIPES);
     const [recipes,setRecipes]= useState([]);
 
@@ -22,7 +35,7 @@ const Home=({name})=> {
     //const recipex =["chiken","pasta","taco"]
     return (
 
-        <div className="App">
+        <div className={classes.root}>
             {recipes.map(recipe =>(
                 <Card1 key={recipe.id} id={recipe.id} title={recipe.recipeName} />
             ))}

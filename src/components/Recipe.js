@@ -13,9 +13,7 @@ const useStyles = makeStyles({
     root: {
         margin:10,
         height: "82vh"
-
     },
-
     media: {
         height: 140,
     },
@@ -28,7 +26,8 @@ const useStyles = makeStyles({
     content: {
         textAlign:"start"
     },
-    ingredients:{marginTop:50
+    ingredients:{
+        marginTop:30
     },
     button:{
         background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
@@ -38,28 +37,26 @@ const Recipe = ({match}) => {
     console.log("match params",match.params.id);
     const id = match.params.id
     const classes = useStyles();
-
     const { loading, error, data } = useQuery(GET_RECIPE,{variables: {id: id }});
+
     const [recipe,setRecipe]= useState([]);
     const [resource,setResource] = useState(true)
     const [ingredients, setIngredients] = useState([])
     const [steps, setSteps] = useState([]);
     const [instructions, setInstructions] = useState([ingredients])
     useEffect(()=>{
-
         if (data) {
             console.log("single recipe", data.recipe);
             setRecipe(data.recipe);
-            setIngredients(data.recipe.ingredients.ingredients);
+            setIngredients(data.recipe.ingredients);
             setSteps(data.recipe.steps);
             if(resource){
                  setInstructions(ingredients);
             } else{
                 setInstructions(steps);
             }
-            // eslint-disable-next-line react-hooks/exhaustive-deps
         }
-    },[data,resource]);
+    },[data,resource,ingredients,steps]);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
@@ -88,8 +85,8 @@ const Recipe = ({match}) => {
                         <Button onClick={()=>setResource(false)}>Steps</Button>
                     </ButtonGroup>
 
-                     {instructions.map(ingredient =>(
-                   <Typography key={ingredient}>{ingredient}</Typography>))}
+                     {instructions.map(val =>(
+                   <Typography key={val}>{val}</Typography>))}
 
                 </div>
 

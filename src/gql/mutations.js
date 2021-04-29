@@ -1,10 +1,10 @@
 import {gql} from '@apollo/client'
 
-export const CREATE_INGREDIENT = gql`
- 
+/*export const CREATE_INGREDIENT = gql`
+
  mutation addIngredients(
     $ingredients: [String]
- ) { 
+ ) {
         addIngredients(
         ingredients: $ingredients
  ) {
@@ -12,13 +12,13 @@ export const CREATE_INGREDIENT = gql`
      id
     }
   }
-`;
+`;*/
 
 export const CREATE_RECIPE = gql`
  
  mutation addRecipe(
     $recipeName: String
-    $ingredients: ingredients
+    $ingredients: [String]
     $steps: [String]
     ) {addRecipe(
         recipeName: $recipeName
@@ -26,7 +26,7 @@ export const CREATE_RECIPE = gql`
         steps: $steps
     ) {
         recipeName
-        ingredients{ingredients} 
+        ingredients
         steps
     }
  }

@@ -33,11 +33,11 @@ const BottomNav =()=>{
                 onChange={(event, newValue) => {
                     setValue(newValue);
                 }}
-                showLabels    //something wrong with this
+               // showLabels //something wrong with this
                 className={classes.root}
             >
 
-                <Link to="/"> <BottomNavigationAction label="Home" icon={<HomeIcon />} /> </Link>
+                <Link to="/"> <BottomNavigationAction label="Home"  icon={<HomeIcon />} /> </Link>
                 <Link to="/liked"> <BottomNavigationAction label="Liked" icon={<FavoriteIcon />} /> </Link>
                 <Link to="/myRecipes">  <BottomNavigationAction label="My recipes" icon={<LocationOnIcon />} />  </Link>
 

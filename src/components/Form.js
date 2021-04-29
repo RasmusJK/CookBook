@@ -1,7 +1,7 @@
 import '../App.css';
-import React,{useState} from "react";
+import React, {useState} from "react";
 import {Button} from "@material-ui/core";
-import {CREATE_INGREDIENT,CREATE_RECIPE} from '../gql/mutations'
+import {CREATE_RECIPE} from '../gql/mutations'
 import {useMutation} from "@apollo/client";
 
 //pitää painaa add ingredient buttonia 2 kertaa ennen kuin lisää
@@ -18,22 +18,26 @@ const Form=()=> {
         setIngredients(prevState => [...prevState, ingredient]);
         console.log(ingredients);
 
+
     }
     const addStepsToList =e =>{
         e.preventDefault();
         setSteps(prevState => [...prevState, step]);
         console.log(steps);
-
     }
-    const [addIngredients,{error}]= useMutation(CREATE_INGREDIENT)
+
+
+    const [addRecipe,{error}]= useMutation(CREATE_RECIPE)
     const addIngredientsToDB = ()=> {
-        addIngredients({
+        addRecipe({
             variables:{
-                ingredients: ingredients
+                recipeName: recipeName,
+                ingredients: ingredients,
+                steps: steps
             }
         })
         if (error){
-            console.log("error",error)
+            console.log("error",error);
         }
     }
 
@@ -53,6 +57,7 @@ console.log(recipeName);
                     placeholder="add ingredients"
                     onChange={(e)=>{
                         setIngredient(e.target.value);
+
                    }}
             />
                 <Button type="submit">Add ingredient</Button>

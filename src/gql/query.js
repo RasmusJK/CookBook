@@ -6,7 +6,7 @@ export const GET_RECIPES = gql`
   recipeName
   id
   steps
-  ingredients{ ingredients}
+  ingredients
 }
 }
 
@@ -17,7 +17,7 @@ export const GET_RECIPE = gql`
    recipe(id: $id ){
     recipeName
     id
-    ingredients{ingredients} 
+    ingredients
     steps
     }
     }
