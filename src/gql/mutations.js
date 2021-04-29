@@ -33,3 +33,22 @@ export const CREATE_RECIPE = gql`
  
 `;
 
+export const CREATE_USER = gql`
+ 
+ mutation register(
+    $username: String!
+    $password: String!
+  ) {
+    register(
+      username: $username
+      password: $password
+    ) {
+      username
+      id
+    }
+  }
+
+ 
+`;
+
+

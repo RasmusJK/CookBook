@@ -24,6 +24,22 @@ export const GET_RECIPE = gql`
 
 `;
 
+export const LOGIN = gql`
+ query login(
+    $username: String!
+    $password: String!){
+    login(
+    username: $username
+    password: $password
+    ){
+    username
+    token 
+    id
+ }
+ }
+ 
+`;
+
 
 
 
