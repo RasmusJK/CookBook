@@ -24,7 +24,7 @@ const Home=({name})=> {
 
     useEffect(()=>{
         if (data) {
-            console.log("data", data.recipes);
+        //    console.log("data", data.recipes);
             setRecipes(data.recipes);
         }
     },[data])
@@ -32,7 +32,6 @@ const Home=({name})=> {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
-    //const recipex =["chiken","pasta","taco"]
     return (
 
         <div className={classes.root}>

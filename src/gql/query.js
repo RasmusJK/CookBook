@@ -7,6 +7,7 @@ export const GET_RECIPES = gql`
   id
   steps
   ingredients
+  author
 }
 }
 
@@ -19,6 +20,7 @@ export const GET_RECIPE = gql`
     id
     ingredients
     steps
+    author
     }
     }
 
@@ -32,9 +34,10 @@ export const LOGIN = gql`
     username: $username
     password: $password
     ){
+    id
     username
     token 
-    id
+    
  }
  }
  

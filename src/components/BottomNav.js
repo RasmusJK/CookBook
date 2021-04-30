@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 const BottomNav =()=>{
 
@@ -26,6 +26,7 @@ const BottomNav =()=>{
     }));
     const classes = useStyles();
     const [value, setValue] =useState(0);
+    const history = useHistory()
     return(
         <div className={classes.root}>
             <BottomNavigation
@@ -33,13 +34,13 @@ const BottomNav =()=>{
                 onChange={(event, newValue) => {
                     setValue(newValue);
                 }}
-               // showLabels //something wrong with this
+                showLabel //something wrong with this
                 className={classes.root}
             >
 
-                <Link to="/"> <BottomNavigationAction label="Home"  icon={<HomeIcon />} /> </Link>
-                <Link to="/liked"> <BottomNavigationAction label="Liked" icon={<FavoriteIcon />} /> </Link>
-                <Link to="/myRecipes">  <BottomNavigationAction label="My recipes" icon={<LocationOnIcon />} />  </Link>
+                <span onClick={()=>{history.push('/')}}> <BottomNavigationAction  label="Home"  icon={<HomeIcon />} /> </span>
+                <span onClick={()=>{history.push('/liked')}}> <BottomNavigationAction  label="Liked" icon={<FavoriteIcon />} /> </span>
+                <span onClick={()=>{history.push('/myRecipes')}}>  <BottomNavigationAction label="My recipes" icon={<LocationOnIcon />} />  </span>
 
             </BottomNavigation>
 

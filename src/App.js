@@ -27,10 +27,6 @@ const App = () => {
             <TopBar name="My recipes"/>
             <MyRecipes name="My recipes"/>
         </Route>
-            <Route path="/myRecipes" >
-                <TopBar name="My recipes"/>
-                <MyRecipes name="My recipes"/>
-            </Route>
 
             <Route path="/recipe/:id" component={Recipe} />
 

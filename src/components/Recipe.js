@@ -77,7 +77,7 @@ const Recipe = ({match}) => {
                 </Typography>
 
                 <Typography className={classes.author} color="textSecondary">
-                    Author
+                    {recipe.author}
                 </Typography>
                 <div className={classes.ingredients}>
                     <ButtonGroup className={classes.button} disableElevation variant="contained">

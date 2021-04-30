@@ -6,29 +6,29 @@ const Register=()=>{
 
     const [username, setUsername] =useState("");
     const [password, setPassword] =useState("");
-
-    const [register, { loading, data, error }] = useMutation(CREATE_USER);
     const history = useHistory();
 
-       const signUp = ()=> {
-           register({
-               variables: {
-                   username: username,
-                   password: password
-               }
-            }).then(r =>{
-                console.log("R?",r);
-           })
+    const [register] = useMutation(CREATE_USER,{
+        variables:{
+            username: username,
+            password: password
+        },onCompleted: ({register}) => {
+            console.log("register",register);
+            history.push('/');
+
+        },onError(error){
+            console.log("registerError",error)
+
+        }
+    });
 
 
-       }
 
     return (
         <div className="App">
             <form onSubmit={event => {
                 event.preventDefault();
-                signUp();
-                history.push('/');
+                register();
 
             }}>
                 <input type="text"
