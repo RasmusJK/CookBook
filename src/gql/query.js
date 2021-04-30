@@ -25,6 +25,18 @@ export const GET_RECIPE = gql`
     }
 
 `;
+export const GET_USER_RECIPES = gql`
+ query recipesByUser($author: String!){
+   recipesByUser(author: $author){
+    recipeName
+    id
+    ingredients
+    steps
+    author
+    }
+    }
+
+`;
 
 export const LOGIN = gql`
  query login(
