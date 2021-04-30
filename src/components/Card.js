@@ -5,7 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -14,22 +14,28 @@ const useStyles = makeStyles({
         marginRight:20,
         maxWidth: 345,
         flexGrow:1,
-        justifyContent:"space-around"
+        justifyContent:"space-around",
+
     },
     media: {
         height: 140,
     },
     content: {
-        textAlign:"start"
+        textAlign:"start",
+
     }
 });
 
  const Card1 = ({title,id})=> {
     const classes = useStyles();
-
+    const history= useHistory()
     return (
-        <Card className={classes.root}>
-            <Link to={`/recipe/${id}`}  >
+        <Card className={classes.root}
+        onClick={()=>{
+        history.push(`/recipe/${id}`)
+        }
+        }>
+
 
             <CardActionArea>
                 <CardMedia
@@ -43,7 +49,7 @@ const useStyles = makeStyles({
                     </Typography>
                 </CardContent>
             </CardActionArea>
-        </Link>
+
 
  </Card>
     );

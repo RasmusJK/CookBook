@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import {useHistory} from 'react-router-dom';
+import {useHistory,Link} from 'react-router-dom';
 
 const BottomNav =()=>{
 
@@ -18,32 +18,35 @@ const BottomNav =()=>{
             background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
             borderRadius: 3,
             border: 0,
-            color: 'white',
             height: 48,
-
-            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+            textDecoration:"none"
         },
     }));
     const classes = useStyles();
     const [value, setValue] =useState(0);
+
     const history = useHistory()
     return(
-        <div className={classes.root}>
             <BottomNavigation
                 value={value}
                 onChange={(event, newValue) => {
                     setValue(newValue);
                 }}
-                showLabel //something wrong with this
+                showLabels   //something wrong with this
                 className={classes.root}
             >
 
-                <span onClick={()=>{history.push('/')}}> <BottomNavigationAction  label="Home"  icon={<HomeIcon />} /> </span>
-                <span onClick={()=>{history.push('/liked')}}> <BottomNavigationAction  label="Liked" icon={<FavoriteIcon />} /> </span>
-                <span onClick={()=>{history.push('/myRecipes')}}>  <BottomNavigationAction label="My recipes" icon={<LocationOnIcon />} />  </span>
+                 <BottomNavigationAction   label="Home"  icon={<HomeIcon />} component={Link} to='/' style={{ color: 'inherit', textDecoration: 'inherit'}} />
+               <BottomNavigationAction  label="Liked" icon={<FavoriteIcon />} component={Link} to='/liked' style={{ color: 'inherit', textDecoration: 'inherit'}} />
+                <BottomNavigationAction  label="My recipes" icon={<LocationOnIcon />} component={Link} to='/myRecipes' style={{ color: 'inherit', textDecoration: 'inherit'}} />
 
             </BottomNavigation>
 
-    </div>);
+    );
 }
+//gives error
+/*   <span onClick={()=>{history.push('/')}}> <BottomNavigationAction   label="Home"  icon={<HomeIcon />} /> </span>
+                <span onClick={()=>{history.push('/liked')}}> <BottomNavigationAction  label="Liked" icon={<FavoriteIcon />} /> </span>
+                <span onClick={()=>{history.push('/myRecipes')}}>  <BottomNavigationAction  label="My recipes" icon={<LocationOnIcon />} />  </span> */
 export default BottomNav;

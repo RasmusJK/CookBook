@@ -11,7 +11,7 @@ const MyRecipes=({name})=> {
 
     useEffect(()=>{
         if (data) {
-                console.log("data", data);
+                console.log("Recipes by user", data.recipesByUser);
            // setRecipes(data.recipes);
         }
     },[data])
