@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import {useHistory,Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const BottomNav =()=>{
 
@@ -26,14 +26,13 @@ const BottomNav =()=>{
     const classes = useStyles();
     const [value, setValue] =useState(0);
 
-    const history = useHistory()
     return(
             <BottomNavigation
                 value={value}
                 onChange={(event, newValue) => {
                     setValue(newValue);
                 }}
-                showLabels   //something wrong with this
+                showLabels
                 className={classes.root}
             >
 

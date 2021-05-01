@@ -1,11 +1,28 @@
 import '../App.css';
 import React, {useState} from "react";
-import {Button} from "@material-ui/core";
+import {Button, Container} from "@material-ui/core";
 import {CREATE_RECIPE} from '../gql/mutations'
 import {useMutation} from "@apollo/client";
+import { makeStyles } from '@material-ui/core/styles';
 
 const ingredients= [];
+
+const useStyles = makeStyles({
+    form: {
+       alignItems:"center",
+        display:"flex",
+        flexDirection:"column",
+        marginBottom:"10px"
+
+    },
+    button: {
+        background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+
+    }
+});
+
 const Form= ()=> {
+    const classes = useStyles();
     const [recipeName, setRecipeName] =useState("");
 
     const [ingredient, setIngredient] =useState("");
@@ -57,35 +74,32 @@ console.log(recipeName);
     return (
         <div className="App">
 
+            <form className={classes.form}>
             <input type="text"
                 placeholder="Recipe name"
                 onChange={e=>{
                     setRecipeName(e.target.value);
             }}
             />
-
-            <form onSubmit={event=>{
-                event.preventDefault()
-                addIngredientToList()
-
-            }}>
+            <Container>
             <input type="text"
                     placeholder="add ingredients"
                    value={ingredient}
                     onChange={updateIngredient}
             />
-                <Button type="submit">Add ingredient</Button>
-            </form>
-            <form>
+                <Button className={classes.button} onClick={addIngredientToList}>+</Button>
+            </Container>
+                <Container>
                 <input type="text"
                        placeholder="add steps"
                        value={step}
                        onChange={updateStep}
                 />
-                <Button onClick={addStepsToList}>Add Step</Button>
-            </form>
-                <Button onClick={addIngredientsToDB}>Add Recipe</Button>
+                <Button className={classes.button} onClick={addStepsToList}>+</Button>
+                </Container>
 
+                <Button className={classes.button} onClick={addIngredientsToDB}>Add Recipe</Button>
+            </form>
 
         </div>
     );
