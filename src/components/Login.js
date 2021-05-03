@@ -65,7 +65,7 @@ const Login=()=>{
 
     return (
         <div>
-            <TopBar/>
+            <TopBar name="Login"/>
         <div className={classes.root}>
 
         <div className={classes.container}>

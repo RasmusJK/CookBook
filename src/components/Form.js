@@ -1,23 +1,59 @@
 import '../App.css';
 import React, {useState} from "react";
-import {Button, Container} from "@material-ui/core";
+import {Button, Container, Typography} from "@material-ui/core";
 import {CREATE_RECIPE} from '../gql/mutations'
 import {useMutation} from "@apollo/client";
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
 import TopBar from "./TopBar";
-const ingredients= [];
+
+//const ingredients= [];
 
 const useStyles = makeStyles({
     form: {
-       alignItems:"center",
+
         display:"flex",
+        alignItems:"center",
         flexDirection:"column",
         marginBottom:"10px",
-        marginTop:"10px"
+        marginTop:"10px",
+        alignContent:"center"
     },
     button: {
         background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+
+    },
+    container:{
+        display:"",
+        width: "100%",
+        marginTop:"5vh",
+        marginLeft:"10%",
+        alignSelf: "center",
+        borderSpacing:"3px",
+        overflowY: "scroll",
+    },
+
+    ingredients:{
+
+        display:"table-cell",
+        background:"#fafafa",
+        width:"22vh",
+        height: "30vh",
+        borderRadius:5,
+        boxShadow:"2px 2px 2px black",
+        border:"1px solid black",
+        marginRight:"1px",
+        overflowY: "scroll",
+    },
+    steps:{
+        display:"table-cell",
+        background:"#fafafa",
+        width:"22vh",
+        height:"35vh",
+        borderRadius:5,
+        boxShadow:"2px 2px 2px black",
+        border:"1px solid black",
+        overflowY: "scroll",
 
     }
 });
@@ -28,7 +64,7 @@ const Form= ()=> {
     const [recipeName, setRecipeName] =useState("");
 
     const [ingredient, setIngredient] =useState("");
-   // const [ingredients, setIngredients] =useState([]);
+    const [ingredients, setIngredients] =useState([]);
 
     const [step, setStep] =useState("");
     const [steps, setSteps] =useState([]);
@@ -42,18 +78,14 @@ const Form= ()=> {
     }
 
     const addIngredientToList  = () =>{
-       console.log("ingredient",ingredient);
-        ingredients.push(ingredient)
-
-       //setIngredients(ingredients2);
-          console.log("ingredients",ingredients,);
+      // console.log("ingredient",ingredient);
+       // ingredients.push(ingredient)
+       setIngredients([...ingredients,ingredient]);
     setIngredient("");
     }
     const addStepsToList =() =>{
         setSteps( [...steps, step]);
-        console.log(steps);
         setStep("");
-
     }
     const handleFileChange = e =>{
         const file = e.target.files[0];
@@ -97,7 +129,7 @@ const Form= ()=> {
 console.log(recipeName);
     return (
         <div className="App">
-            <TopBar/>
+            <TopBar name="Add recipe"/>
             <form className={classes.form}>
             <input type="text"
                 placeholder="Recipe name"
@@ -130,6 +162,26 @@ console.log(recipeName);
 
                 <Button className={classes.button} onClick={addRecipe}>Add Recipe</Button>
             </form>
+            <div className={classes.container}>
+
+
+            <div className={classes.ingredients}>
+                <Typography>Ingredients</Typography>
+                <ol>
+                    {ingredients.map(value =>(
+                        <li key={value}>{value}</li>
+                    ) )}
+                </ol>
+            </div>
+            <div className={classes.steps} >
+                <Typography>Steps</Typography>
+                <ul>
+                {steps.map(value =>(
+                    <li key={value}>{value}</li>
+                ) )}
+                </ul>
+            </div>
+            </div>
 
         </div>
     );

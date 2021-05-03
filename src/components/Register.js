@@ -64,12 +64,13 @@ const Register=()=>{
 
     return (
         <div>
-            <TopBar/>
+            <TopBar name="Register"/>
         <div className={classes.root}>
         <div className={classes.container}>
             <form className={classes.form} onSubmit={event => {
                 event.preventDefault();
                 register();
+                history.push('/login');
                 window.location.reload();
 
             }}>
