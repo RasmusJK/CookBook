@@ -44,12 +44,14 @@ const Recipe = ({match}) => {
     const [ingredients, setIngredients] = useState([])
     const [steps, setSteps] = useState([]);
     const [instructions, setInstructions] = useState([ingredients])
+
     useEffect(()=>{
         if (data) {
             console.log("single recipe", data.recipe);
             setRecipe(data.recipe);
             setIngredients(data.recipe.ingredients);
             setSteps(data.recipe.steps);
+
             if(resource){
                  setInstructions(ingredients);
             } else{
@@ -66,7 +68,7 @@ const Recipe = ({match}) => {
         <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
-                image="http://placekitten.com/300/300"
+                image={recipe.file}
                 title="placeholder"
             />
             <CardContent>

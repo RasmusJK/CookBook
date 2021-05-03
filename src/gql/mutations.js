@@ -7,16 +7,20 @@ export const CREATE_RECIPE = gql`
     $ingredients: [String]
     $steps: [String]
     $author: String
-    ) {addRecipe(
+    $file: Upload
+    ) {
+    addRecipe(
         recipeName: $recipeName
         ingredients: $ingredients
         steps: $steps
         author: $author
+        file: {file: $file}
     ) {
         recipeName
         ingredients
         steps
         author
+        file
     }
  }
  

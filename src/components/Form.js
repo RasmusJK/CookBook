@@ -4,7 +4,8 @@ import {Button, Container} from "@material-ui/core";
 import {CREATE_RECIPE} from '../gql/mutations'
 import {useMutation} from "@apollo/client";
 import { makeStyles } from '@material-ui/core/styles';
-
+import {useHistory} from 'react-router-dom'
+import TopBar from "./TopBar";
 const ingredients= [];
 
 const useStyles = makeStyles({
@@ -12,8 +13,8 @@ const useStyles = makeStyles({
        alignItems:"center",
         display:"flex",
         flexDirection:"column",
-        marginBottom:"10px"
-
+        marginBottom:"10px",
+        marginTop:"10px"
     },
     button: {
         background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
@@ -22,6 +23,7 @@ const useStyles = makeStyles({
 });
 
 const Form= ()=> {
+    const history= useHistory();
     const classes = useStyles();
     const [recipeName, setRecipeName] =useState("");
 
@@ -30,6 +32,7 @@ const Form= ()=> {
 
     const [step, setStep] =useState("");
     const [steps, setSteps] =useState([]);
+    const [image, setImage] =useState(null);
 
     const updateStep =e =>{
         setStep(e.target.value);
@@ -52,28 +55,49 @@ const Form= ()=> {
         setStep("");
 
     }
+    const handleFileChange = e =>{
+        const file = e.target.files[0];
+        if (!file) return
+        setImage(file);
+    }
     //toimii
 
-    const [addRecipe,{error}]= useMutation(CREATE_RECIPE)
-    const addIngredientsToDB = ()=> {
+    const [addRecipe]= useMutation(CREATE_RECIPE, {
+        variables:{
+            recipeName: recipeName,
+            ingredients: ingredients,
+            steps: steps,
+            author: localStorage.getItem("Username"),
+            file: image
+        },onCompleted: ()=>{
+            console.log("recipe added");
+            history.push('/myRecipes')
+            window.location.reload();
+        }, onError(e){
+            console.log(e);
+        }
+    });
+
+  /*  const addIngredientsToDB = ()=> {
         addRecipe({
             variables:{
                 recipeName: recipeName,
                 ingredients: ingredients,
                 steps: steps,
-                author: localStorage.getItem("Username")
+                author: localStorage.getItem("Username"),
+                File: image
             }
         })
         if (error){
             console.log("error",error);
         }
     }
-
+*/
 
 console.log(recipeName);
     return (
         <div className="App">
-
+            <TopBar/>
             <form className={classes.form}>
             <input type="text"
                 placeholder="Recipe name"
@@ -81,6 +105,12 @@ console.log(recipeName);
                     setRecipeName(e.target.value);
             }}
             />
+                <input type="file"
+                       style={{marginTop:"10px",marginBottom:"10px"}}
+                       accept="image/*"
+                       onChange={handleFileChange}
+                />
+
             <Container>
             <input type="text"
                     placeholder="add ingredients"
@@ -98,7 +128,7 @@ console.log(recipeName);
                 <Button className={classes.button} onClick={addStepsToList}>+</Button>
                 </Container>
 
-                <Button className={classes.button} onClick={addIngredientsToDB}>Add Recipe</Button>
+                <Button className={classes.button} onClick={addRecipe}>Add Recipe</Button>
             </form>
 
         </div>

@@ -36,7 +36,7 @@ const Home=({name})=> {
 
         <div className={classes.root}>
             {recipes.map(recipe =>(
-                <Card1 key={recipe.id} id={recipe.id} title={recipe.recipeName} />
+                <Card1 key={recipe.id} id={recipe.id} title={recipe.recipeName} image={recipe.file} />
             ))}
         </div>
     );

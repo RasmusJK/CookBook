@@ -8,6 +8,8 @@ import BottomNav from "./components/BottomNav";
 import TopBar from "./components/TopBar";
 import Recipe from "./components/Recipe";
 import Form from "./components/Form";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
         </Route>
             <Route path="/recipe/:id" component={Recipe} />
             <Route path="/addRecipe" component={Form} />
+            <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
 
 
         </Switch>

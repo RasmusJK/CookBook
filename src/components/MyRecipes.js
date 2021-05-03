@@ -37,9 +37,7 @@ const useStyles = makeStyles((theme) => ({
         background:"linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
     }
 }));
-//Looks like shit, ccs is hard
 
-//napista uploadformiin
 
 const MyRecipes=({name})=> {
     const classes = useStyles();
@@ -60,7 +58,7 @@ const MyRecipes=({name})=> {
             <div className={classes.root}>
             <div className={classes.gallery}>
                 {recipes.map(recipe =>(
-                    <MyRecipeCard key={recipe.id} id={recipe.id} title={recipe.recipeName} />
+                    <MyRecipeCard key={recipe.id} id={recipe.id} title={recipe.recipeName} image={recipe.file} />
                 ))}
 
             </div>

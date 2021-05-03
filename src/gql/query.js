@@ -8,6 +8,7 @@ export const GET_RECIPES = gql`
   steps
   ingredients
   author
+  file
 }
 }
 
@@ -21,6 +22,7 @@ export const GET_RECIPE = gql`
     ingredients
     steps
     author
+    file
     }
     }
 
@@ -33,6 +35,7 @@ export const GET_USER_RECIPES = gql`
     ingredients
     steps
     author
+    file
     }
     }
 

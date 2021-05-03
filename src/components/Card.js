@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     }
 });
 
- const Card1 = ({title,id})=> {
+ const Card1 = ({title,id,image})=> {
     const classes = useStyles();
     const history= useHistory()
     return (
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image="http://placekitten.com/300/300"
+                    image={image}
                     title="placeholder"
                 />
                 <CardContent className={classes.content}>
