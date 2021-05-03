@@ -9,8 +9,14 @@ import {useHistory} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        justifyContent:"space-around",
+        textAlign:"left",
+        marginTop: "10px"
 
-        alignContent:"center",
+
 
         },
         gallery:{
@@ -19,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
             height:"70vh",
             marginTop:10,
             marginLeft:10,
+            marginRight:10,
             borderRadius:10,
             boxShadow:"2px 2px 2px black",
 

@@ -13,7 +13,6 @@ const useStyles = makeStyles({
         flexDirection:"column",
         marginBottom:50,
 
-
     },
 
 });
@@ -35,9 +34,11 @@ const Home=({name})=> {
     return (
 
         <div className={classes.root}>
+            <div>
             {recipes.map(recipe =>(
                 <Card1 key={recipe.id} id={recipe.id} title={recipe.recipeName} image={recipe.file} />
             ))}
+            </div>
         </div>
     );
 }

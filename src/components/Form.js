@@ -175,11 +175,11 @@ console.log(recipeName);
             </div>
             <div className={classes.steps} >
                 <Typography>Steps</Typography>
-                <ul>
+                <ol>
                 {steps.map(value =>(
                     <li key={value}>{value}</li>
                 ) )}
-                </ul>
+                </ol>
             </div>
             </div>
 

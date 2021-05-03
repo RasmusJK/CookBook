@@ -7,25 +7,15 @@ import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache,ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createUploadLink} from "apollo-upload-client";
-// eslint-disable-next-line
-import {onError} from "@apollo/client/link/error";
 
 /*const httpLink = createHttpLink({
     uri: 'http://localhost:3000/graphql',
 }); */
 const uploadLink = createUploadLink({
-    uri: 'https://localhost:8000/graphql',
-    //uri: 'https://my-app-123.jelastic.metropolia.fi/graphql'
+   // uri: 'https://localhost:8000/graphql',
+    uri: 'https://my-app-123.jelastic.metropolia.fi/graphql'
 })
-// eslint-disable-next-line
-const errorLink = onError(({ graphqlErrors, networkError}) => {
-    if(graphqlErrors) {
-        // eslint-disable-next-line array-callback-return
-        graphqlErrors.map(({message, location, path}) => {
-            alert(`Graphql error ${message}`);
-        })
-    }
-});
+
 
 const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
